@@ -125,7 +125,7 @@ O que não vai ser testado no momento:
 | CT-013 | Validar opção “Configurações” na sidebar  | Paciente logado | 1. Clicar em “Configurações”.          | Tela de configurações é exibida.                               |
 | CT-014 | Validar opção “Sair da conta”             | Paciente logado | 1. Clicar em “Sair da conta”.          | Sessão é encerrada e usuário é redirecionado para a homepage.  |
 
-**Tela "Orçamentos"**
+**Tela (Pricipal) de Orçamentos**
 | ID     | Cenário de Teste                           | Pré-condição            | Passos                                                                             | Resultado Esperado                                       |
 | ------ | ------------------------------------------ | ----------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | CT-015 | Validar exibição da listagem de orçamentos | Paciente com orçamentos | 1. Acessar tela “Orçamentos”.                                                      | Listagem exibe orçamentos vinculados ao CPF do paciente. |
@@ -136,7 +136,7 @@ O que não vai ser testado no momento:
 | CT-020 | Validar paginação da listagem              | -                       | 1. Clicar em “>” ou “>>”.                                                          | Exibir demais páginas de resultados.                     |
 | CT-021 | Validar redirecionamento para detalhes     | Paciente com orçamentos | 1. Clicar em um orçamento da tabela.                                               | Redirecionar para “Detalhes do orçamento”.               |
 
-**Tela “Detalhes do Orçamento”** 
+**Tela Detalhes do Orçamento** 
 | ID     | Cenário de Teste                                    | Pré-condição                  | Passos                                               | Resultado Esperado                                                                                   |
 | ------ | --------------------------------------------------- | ----------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | CT-022 | Validar botão de retorno                            | Estar na tela de detalhes     | 1. Clicar na seta (“<”).                             | Retorna à tela “Orçamentos”.                                                                         |
@@ -153,7 +153,7 @@ O que não vai ser testado no momento:
 | CT-033 | Validar download do comprovante                     | Pagamento aprovado            | 1. Clicar em “Baixar comprovante”.                   | Download do comprovante é iniciado.                                                                |
 | CT-034 | Validar histórico de pagamento                      | Orçamento com status definido | 1. Verificar card “Histórico pagamento”.             | Exibir status correto (Aprovado, Pendente, Recusado, Cancelado).                                   |
 
-**Tela “Configurações”**
+**Tela de Configurações**
 | ID     | Cenário de Teste                                                 | Pré-condição                        | Passos                                                                       | Resultado Esperado                                    |
 | ------ | ---------------------------------------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------- |
 | CT-035 | Validar exibição do formulário “Paciente”                        | Paciente logado                     | 1. Acessar “Configurações”.                                                  | Exibir formulário com dados auto preenchidos.         |
@@ -176,25 +176,50 @@ O que não vai ser testado no momento:
 **Login Admin** 
 | ID     | Cenário de Teste                    | Pré-condição                    | Passos                                                                                                      | Resultado Esperado                                        |
 | ------ | ----------------------------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| CT-043 | Login válidos       | Ter um usuário admin cadastrado | 1. Acessar a página de login da administração<br>2. Inserir login e senha válidos<br>3. Clicar em “Entrar” | O sistema deve autenticar e redirecionar o usuário para a tela de orçamentos |
-| CT-044| Login inválidos     | —                               | 1. Inserir login e/ou senha incorretos<br>2. Clicar em “Entrar”                                            | Exibir mensagem de erro “Login ou senha inválidos”           |
-| CT-045 | Campos obrigatórios não preenchidos | —                               | 1. Clicar em “Entrar” sem preencher campos                                                                  | Exibir mensagem de aviso que os campos de login e senha são obrigatórios        |
-| CT-046 | Logout do sistema                   | Usuário logado como admin       | 1. Clicar em “Sair” ou ícone correspondente                                                                 | Sistema deve encerrar a sessão e redirecionar para a homepage              |
+|  CT-043| Login válidos                       | Ter um usuário admin cadastrado | 1. Acessar a página de login da administração<br>2. Inserir login e senha válidos<br>3. Clicar em “Entrar”  | O sistema deve autenticar e redirecionar o usuário para a tela de orçamentos |
+| CT-044 | Login inválidos                     | -                               | 1. Inserir login e/ou senha incorretos<br>2. Clicar em “Entrar”                                             | Exibir mensagem de erro “Login ou senha inválidos”           |
+| CT-045 | Campos obrigatórios não preenchidos | -                               | 1. Clicar em “Entrar” sem preencher campos                                                                  | Exibir mensagem de aviso que os campos de login e senha são obrigatórios |
+| CT-046 | Logout do sistema                   | Usuário logado como admin       | 1. Clicar em “Sair” ou ícone correspondente                                                                 | Sistema deve encerrar a sessão e redirecionar para a homepage   |
+
+**Tela (Principal) Orçamentos**
+| ID     | Cenário de Teste                       | Pré-condição                                | Passos                                                                                        | Resultado Esperado                                                             |
+| ------ | -------------------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| CT-047 | Exibir elementos fixos                 | Usuário admin autenticado                   | 1. Acessar tela principal                                                                    | Header e sidebar com todas as opções visíveis.                           |
+| CT-048 | Exibir listagem de todos os orçamentos | Usuário autenticado                         | 1. Acessar a tela principal                                                                   | Listagem de todos os orçamentos exibida com paginação.                            |
+| CT-049 | Exibir cards informativos              | Usuário autenticado                         | 1. Verificar cards no topo.                                                                   | Exibe 4 cards: total pagos, valor recebido, valor a receber e total enviados.  |
+| CT-050 | Aplicar filtros e pesquisa             | Usuário autenticado                         | 1. Inserir termo na busca.<br>2. Aplicar filtros (login, status pagamento, status orçamento). | Resultados filtrados corretamente - botão “Limpar filtros” restaura a listagem. |
+| CT-051 | Selecionar orçamentos e reenviar       | Usuário autenticado com orçamentos listados | 1. Selecionar um ou mais orçamentos.<br>2. Clicar em “REENVIAR”.                              | E-mail reenviado com modal de sucesso ou erro.                                 |
+| CT-052 | Criar novo orçamento                   | Usuário autenticado                         | 1. Clicar no botão “NOVO ORÇAMENTO”.                                                          | Redireciona para form de criação de orçamento.                                 |
+
+**Formulário de “Novo Orçamento”**
+| ID     | Cenário de Teste                             | Pré-condição                    | Passos                                                                                               | Resultado Esperado                                                               |
+| ------ | -------------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| CT-053 | Exibir formulário completo                   | Usuário autenticado             | 1. Acessar “Novo Orçamento”                                                                         | Exibe cards: Empresa, Dados do Paciente, Responsável Financeiro e Procedimentos. |
+| CT-054 | Selecionar empresa/unidade                   | -                               | 1. Abrir select “Selecione a empresa”                                                               | Lista de unidades é exibida                                                     |
+| CT-055 | Cadastrar novo paciente                      | Paciente inexistente no sistema | 1. Informar CPF inexistente.<br>2. Preencher todos os campos obrigatórios.<br>3. Clicar “Cadastrar”. | Modal de sucesso é exibido e dados salvos                                       |
+| CT-056 | Atualizar paciente existente                 | Paciente já cadastrado          | 1. Informar CPF existente                                                                           | Campos são preenchidos automaticamente e botão muda para “Atualizar”.            |
+| CT-057 | Definir paciente como responsável financeiro | -                               | 1. Selecionar “Paciente será o responsável financeiro”                                              | Card “Dados do responsável financeiro” não é exibido                            |
+| CT-058 | Adicionar responsável financeiro             | -                               | 1. Selecionar “Adicionar responsável financeiro”                                                    | Card aparece para preenchimento dos dados obrigatórios                          |
+| CT-059 | Adicionar procedimento                       | -                               | 1. Pesquisar procedimento.<br>2. Informar valor.<br>3. Clicar “Adicionar”                           | Procedimento aparece na listagem “Procedimentos adicionados”.                    |
+| CT-060 | Validação de campos obrigatórios             | -                               | 1. Deixar campos obrigatórios vazios (empresa, paciente, observações, procedimentos).                | Botão “Finalizar” permanece desativado.                                          |
+| CT-061 | Cancelar criação de orçamento                | Usuário preenchendo formulário  | 1. Clicar em “Cancelar”                                                                            | Orçamento descartado e usuário retorna à tela principal.                         |
+| CT-062 | Finalizar orçamento – opção Enviar           | Formulário completo             | 1. Clicar “Finalizar”.<br>2. Escolher “Enviar orçamento”                                            | Modal de sucesso exibido; orçamento aparece na listagem com status “Enviado”.    |
+| CT-063 | Finalizar orçamento – opção Salvar           | Formulário completo             | 1. Clicar “Finalizar”.<br>2. Escolher “Salvar orçamento”                                            | Orçamento aparece na listagem com status “Salvo” (rascunho).                     |
 
 
+**Tela de Relatórios**
+| ID     | Cenário de Teste           | Pré-condição                  | Passos                                                        | Resultado Esperado                                          |
+| ------ | -------------------------- | ----------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------- |
+| CT-064 | Exibir opções de relatório | Usuário autenticado           | 1. Acessar tela de Relatórios.                                | Exibe cards: “Relatórios em PDF” e “Relatórios em CSV”.     |
+| CT-065 | Selecionar período         | Usuário na tela de Relatórios | 1. Clicar em um card.<br>2. Selecionar período no calendário. | Período é aplicado corretamente.                            |
+| CT-066 | Gerar relatório em PDF     | -                              | 1. Selecionar período.<br>2. Clicar para visualizar e baixar. | PDF é exibido e pode ser baixado.                           |
+| CT-067 | Gerar relatório em CSV     | -                              | 1. Selecionar período.<br>2. Clicar para baixar.              | Arquivo CSV baixado corretamente (sem opção de visualizar). |
 
-
-
-
-
-
-
-
-
-
-
-
-
+**Tela de Configurações**
+| ID     | Cenário de Teste             | Pré-condição        | Passos                                                                                  | Resultado Esperado                               |
+| ------ | ---------------------------- | ------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| CT-068 | Redefinir senha com sucesso  | Usuário autenticado | 1. Preencher “senha atual”, “nova senha” e “confirmar senha”.<br>2. Clicar em “Salvar”. | Modal de sucesso- senha atualizada - Usuário deve ser direcionado a refazer o login na tela de login-admin              |
+| CT-069 | Erro em redefinição de senha | Usuário autenticado | 1. Informar senhas diferentes.<br>2. Clicar em “Salvar”.                                | Exibe mensagem de erro (“Senhas não coincidem”) |
 
 
 ---
